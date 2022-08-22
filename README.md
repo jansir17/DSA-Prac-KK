@@ -1,1 +1,1 @@
-# This is Total Data Structure and Algoritm practice from the resource KK.
+# This is Total Data Structure and Algorithm practice from the resource KK.
