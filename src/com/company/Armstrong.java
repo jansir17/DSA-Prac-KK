@@ -4,6 +4,7 @@ import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class Armstrong {
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
         System.out.println("Enter your limit of armstrong number checking");
@@ -14,7 +15,6 @@ public class Armstrong {
             }
         }
     }
-
     static boolean isArmstrong(int num){
         int original_number=num;
         int sum=0;
