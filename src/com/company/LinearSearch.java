@@ -7,6 +7,7 @@ public class LinearSearch {
         System.out.println(evenNumber(arr));
 //        System.out.println(checkNumber(arr,target,0,6));
     }
+    //we are checking number in given range
     static boolean checkNumber(int[] arr, int elem, int start, int end){
         if(arr.length==0){
             return false;
@@ -17,6 +18,7 @@ public class LinearSearch {
         return false;
     }
 
+    //we are checking even number digits
     static int evenNumber(int[] arr){
         int totalEvenNumber=0;
         if(arr.length==0){return -1;}
@@ -28,6 +30,7 @@ public class LinearSearch {
         return totalEvenNumber;
     }
 
+    //we have separated from above function to be more readable.
     static boolean evenCounter(int elem) {
         int count=0;
         while(elem>0){
