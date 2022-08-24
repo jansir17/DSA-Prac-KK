@@ -55,4 +55,6 @@ public class BinarySearch {
         }
         return -1;
     }
+    //for orderagnostic search, just check the start and end element whether is ascending or discending order
+    //then just change the > and < sign of the logic of above effiecient code. simple.
 }
