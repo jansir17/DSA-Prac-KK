@@ -16,12 +16,12 @@ public class BSProblems {
         System.out.println("prob3: "+smallestLetter(letters, targetLetter));
         //problem04
         int[] nums = {5, 7, 7, 8, 8, 10};
-        int target = 10;
-        System.out.println("prob4: "+Arrays.toString(firstLastElem(nums, target)));
+        int targetelem2 = 10;
+        System.out.println("prob4: "+Arrays.toString(firstLastElem(nums, targetelem2)));
         //problem05
         int[] arr2= {3,5,6,8,10,90,100, 130, 140, 160, 190,200, 201, 220, 230, 240, 260, 270};
-        int targetElem2=160;
-        System.out.println("prob05: "+answer(arr2,targetElem2));
+        int targetElem3=160;
+        System.out.println("prob05: "+answer(arr2,targetElem3));
         //problem06
         int[] arr3={1,2,3,4,8,9,10,7,5,3,1,0};
         System.out.println("problem06: "+mountainArray(arr3));
