@@ -15,7 +15,6 @@ public class BSProblems {
     static int ceiling(int[] arr, int targetElement){
         //what if the target is the greatest number in the array ?
         if(targetElement>arr[arr.length-1]){return -1;}
-
         int start =0;
         int end=arr.length-1;
         while(start<=end){
@@ -54,6 +53,7 @@ public class BSProblems {
         return end;
     }
 
+    //fidning/ceiling next letter of target letter
     static char smallestLetter(char[] letter, char targetElement){
         int start =0;
         int end=letter.length-1;
@@ -68,4 +68,39 @@ public class BSProblems {
         }
         return letter[start %letter.length];
     }
+
+    //finding first and last position of an element in sorted array
+    static int[] firstLastElem(int[] arr, int targetElement){
+        int[] ans= {-1,-1};
+        int start= search(arr,targetElement,true); //we are checking leftest from the mid
+        int end=search(arr,targetElement,false); // we are chekcing rightest from the mid
+        ans[0]=start;
+        ans[1]=end;
+        return ans;
+    }
+    //this fucntion returns the index value of the target.
+    static int search(int[] arr, int target, boolean findStartIndex){
+        int ans= -1;
+        int start =0;
+        int end=arr.length-1;
+
+        while(start<=end){
+            int mid= start+(end-start)/2;
+            if(target<arr[mid]){
+                end=mid-1;
+            }
+            else if(target>arr[mid]){
+                start=mid+1;
+            }
+            else{
+                ans=mid;
+                if(findStartIndex){
+                    end=mid-1;
+                }
+                else {start=mid+1;}
+            }
+        }
+        return ans;
+    }
+
 }
