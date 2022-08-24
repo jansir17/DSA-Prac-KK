@@ -22,6 +22,9 @@ public class BSProblems {
         int[] arr2= {3,5,6,8,10,90,100, 130, 140, 160, 190,200, 201, 220, 230, 240, 260, 270};
         int targetElem2=160;
         System.out.println("prob05: "+answer(arr2,targetElem2));
+        //problem06
+        int[] arr3={1,2,3,4,8,9,10,7,5,3,1,0};
+        System.out.println("problem06: "+mountainArray(arr3));
     }
 
     //problem01: return index: smallest number>=target
@@ -66,7 +69,7 @@ public class BSProblems {
         return end;
     }
 
-    //problem03: fidning/ceiling next letter of target letter
+    //problem03: finding/ceiling next letter of target letter
     static char smallestLetter(char[] letter, char targetElement) {
         int start = 0;
         int end = letter.length - 1;
@@ -85,7 +88,7 @@ public class BSProblems {
     static int[] firstLastElem(int[] arr, int targetElement) {
         int[] ans = {-1, -1};
         int start = search(arr, targetElement, true); //we are checking leftest from the mid
-        int end = search(arr, targetElement, false); // we are chekcing rightest from the mid
+        int end = search(arr, targetElement, false); // we are checking rightest from the mid
         if (start == end) {
             return ans;
         }
@@ -136,7 +139,7 @@ public class BSProblems {
         }
         return searchAnswer(arr, target, start, end);
     }
-    //this fucntion just search the element in the given range for above method.
+    //this function just search the element in the given range for above method.
     static int searchAnswer(int[] arr, int targetElement, int start, int end) {
         while (start <= end) {
             int mid = start + (end - start) / 2;
@@ -149,5 +152,27 @@ public class BSProblems {
             }
         }
         return -1;
+    }
+
+    //problem06: Mountain array problem
+    static int mountainArray(int[] arr){
+        int start =0;
+        int end =arr.length-1;
+        while(start<end){
+            int mid= start+(end-start)/2;
+            if(arr[mid]>arr[mid+1]){
+                //you are in decreasing part of the array
+                //this maybe the answer but to be sure we have to look left side.
+                end=mid; //we don't have to check right side anymore as we found that target is at left
+            }
+            else {
+                //you are in ascending part of the array
+                start = mid + 1; //because we know that mid+1 element is greater than mid index element.
+            }
+        }
+        //after slicing down the array start == end as we are cutting down above 2 checks.
+        //start and End are always trying to find max element in above 2 checks.
+        //hence, they are pointing to just 1 element that is the maximum one.
+        return start; //start and End both have the same value as we have sliced the array into 1 element.
     }
 }
