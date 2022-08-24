@@ -3,9 +3,9 @@ package com.company;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {2, 4, 5, 7, 10, 12, 14, 30, 32, 40};
-        int targetElem1 = 5;
-        System.out.println("Your Element in index " + searchElement(arr, targetElem1));
-        int targetElem2=32;
+//        int targetElem1 = 3;
+//        System.out.println("Your Element in index " + searchElement(arr, targetElem1));
+        int targetElem2=41;
         System.out.println("Your Element in index "+searchElement2(arr,targetElem2));
     }
     //Efficient way
