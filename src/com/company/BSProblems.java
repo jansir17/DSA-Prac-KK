@@ -29,11 +29,12 @@ public class BSProblems {
         int[] arr4 = {1, 2, 4, 5, 3, 1};
         int targetElem4 = 3;
         System.out.println("prob07: " + searchAnswer2(arr4, targetElem4));
-        //problem08
+
+        //problem08(2 parts)
         int[] arr5 = {4, 5, 6, 7, 0, 1, 2};
         System.out.println("probl08_1: " + findPivot(arr5));
         int[] arr6 = {4, 5, 6, 7, 0, 1, 2};
-        int targetElem5=0;
+        int targetElem5=3;
         System.out.println("probl08_2: " + pivotBinarySearch(arr6,targetElem5));
     }
 
@@ -286,20 +287,23 @@ public class BSProblems {
         int pivot = findPivot(arr);
         if(pivot==-1) {
             //if you did not find a pivot means -1, then array is not rotated, that means we have to do
-            //binary search. simple. as array is not rorated.
+            //binary search. simple. as array is not rotated.
             return searchingForPivotBinary(arr,target,0, arr.length-1);
         }
         //if pivot is found, that means we have found 2 ascending sorted arrays.
         //now 3 cases we have to check
         //case 1
+        //checking the pivot er found if its equal to target, then just return pivot index
         if(arr[pivot]==target){
             return pivot;
         }
         //case 2
+        //checkinf if the target element is greater then starting eleemnt then first half sorted array
         if(target>=arr[0]){
             return searchingForPivotBinary(arr,target,0,pivot-1);
         }
         //case 3
+        //if above 2 case doesnt run that means target element is in second half of sorted array.
         return searchingForPivotBinary(arr,target,pivot+1,arr.length-1);
     }
 
