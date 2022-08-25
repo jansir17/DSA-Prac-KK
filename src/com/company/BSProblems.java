@@ -7,28 +7,34 @@ public class BSProblems {
         //problem01
         int[] arr = {2, 3, 5, 9, 14, 16, 18};
         int targetElem = 1;
-        System.out.println("prob1: "+ceiling(arr, targetElem));
+        System.out.println("prob1: " + ceiling(arr, targetElem));
         //problem02
-        System.out.println("prob2: "+flooring(arr, targetElem));
+        System.out.println("prob2: " + flooring(arr, targetElem));
         //problem03
         char[] letters = {'c', 'f', 'j'};
         char targetLetter = 'e';
-        System.out.println("prob3: "+smallestLetter(letters, targetLetter));
+        System.out.println("prob3: " + smallestLetter(letters, targetLetter));
         //problem04
         int[] nums = {5, 7, 7, 8, 8, 10};
         int targetelem2 = 10;
-        System.out.println("prob4: "+Arrays.toString(firstLastElem(nums, targetelem2)));
+        System.out.println("prob4: " + Arrays.toString(firstLastElem(nums, targetelem2)));
         //problem05
-        int[] arr2= {3,5,6,8,10,90,100, 130, 140, 160, 190,200, 201, 220, 230, 240, 260, 270};
-        int targetElem3=160;
-        System.out.println("prob05: "+answer(arr2,targetElem3));
+        int[] arr2 = {3, 5, 6, 8, 10, 90, 100, 130, 140, 160, 190, 200, 201, 220, 230, 240, 260, 270};
+        int targetElem3 = 160;
+        System.out.println("prob05: " + answer(arr2, targetElem3));
         //problem06
-        int[] arr3={1,2,3,4,8,9,10,7,5,3,1,0};
-        System.out.println("prob06: "+mountainArray(arr3));
+        int[] arr3 = {1, 2, 3, 4, 8, 9, 10, 7, 5, 3, 1, 0};
+        System.out.println("prob06: " + mountainArray(arr3));
         //problem07
-        int[] arr4={1,2,4,5,3,1};
-        int targetElem4=3;
-        System.out.println("prob07: "+searchAnswer2(arr4,targetElem4));
+        int[] arr4 = {1, 2, 4, 5, 3, 1};
+        int targetElem4 = 3;
+        System.out.println("prob07: " + searchAnswer2(arr4, targetElem4));
+        //problem08
+        int[] arr5 = {4, 5, 6, 7, 0, 1, 2};
+        System.out.println("probl08_1: " + findPivot(arr5));
+        int[] arr6 = {4, 5, 6, 7, 0, 1, 2};
+        int targetElem5=0;
+        System.out.println("probl08_2: " + pivotBinarySearch(arr6,targetElem5));
     }
 
     //problem01: return index: smallest number>=target
@@ -143,6 +149,7 @@ public class BSProblems {
         }
         return searchAnswer(arr, target, start, end);
     }
+
     //this function just search the element in the given range for above method.
     static int searchAnswer(int[] arr, int targetElement, int start, int end) {
         while (start <= end) {
@@ -159,17 +166,16 @@ public class BSProblems {
     }
 
     //problem06: Mountain array problem
-    static int mountainArray(int[] arr){
-        int start =0;
-        int end =arr.length-1;
-        while(start<end){
-            int mid= start+(end-start)/2;
-            if(arr[mid]>arr[mid+1]){
+    static int mountainArray(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] > arr[mid + 1]) {
                 //you are in decreasing part of the array
                 //this maybe the answer but to be sure we have to look left side.
-                end=mid; //we don't have to check right side anymore as we found that target is at left
-            }
-            else {
+                end = mid; //we don't have to check right side anymore as we found that target is at left
+            } else {
                 //you are in ascending part of the array
                 start = mid + 1; //because we know that mid+1 element is greater than mid index element.
             }
@@ -186,27 +192,26 @@ public class BSProblems {
     //1st =find the peak of the array
     //2nd =Binary search in Ascending order
     //3rd= if target is not there then binary search in descending order, use orderagnostic search
-    static int searchAnswer2(int[] arr, int target){
-        int peak= peakIndexMountain(arr);
-        int firstTry=orderAgnostic(arr,target,0,peak);
-        if(firstTry!=-1){
+    static int searchAnswer2(int[] arr, int target) {
+        int peak = peakIndexMountain(arr);
+        int firstTry = orderAgnostic(arr, target, 0, peak);
+        if (firstTry != -1) {
             return firstTry;
         }
-        return orderAgnostic(arr,target,peak+1,arr.length-1);
+        return orderAgnostic(arr, target, peak + 1, arr.length - 1);
     }
 
     //this following method is nothing but problem06 finding peak of the Array
-    static int peakIndexMountain(int[] arr){
-        int start =0;
-        int end =arr.length-1;
-        while(start<end){
-            int mid= start+(end-start)/2;
-            if(arr[mid]>arr[mid+1]){
+    static int peakIndexMountain(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] > arr[mid + 1]) {
                 //you are in decreasing part of the array
                 //this maybe the answer but to be sure we have to look left side.
-                end=mid; //we don't have to check right side anymore as we found that target is at left
-            }
-            else {
+                end = mid; //we don't have to check right side anymore as we found that target is at left
+            } else {
                 //you are in ascending part of the array
                 start = mid + 1; //because we know that mid+1 element is greater than mid index element.
             }
@@ -218,31 +223,31 @@ public class BSProblems {
     }
 
     //this following method is nothing but the orderagnostic array problem.
-    static int orderAgnostic(int[] arr,int target, int start, int end){
-        boolean isAsc =arr[start]<arr[end];
-        while(start<=end){
-            int mid=start+(end-start)/2;
-            if(arr[mid]==target){
+    static int orderAgnostic(int[] arr, int target, int start, int end) {
+        boolean isAsc = arr[start] < arr[end];
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == target) {
                 return mid;
             }
-            if(isAsc){
-                if(target<arr[mid]){
-                    end=mid-1;
-                }else{
-                    start=mid+1;
+            if (isAsc) {
+                if (target < arr[mid]) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
                 }
-            }else{
-                if(target>arr[mid]){
-                    end=mid+1;
-                }else{
-                    start=mid+1;
+            } else {
+                if (target > arr[mid]) {
+                    end = mid + 1;
+                } else {
+                    start = mid + 1;
                 }
             }
         }
         return -1;
     }
 
-    //problem07: Sorted rotated array
+    //problem07: Sorted rotated array, roated binary search
 
     //1st: find pivot:=> pivot is point where next number start ascending.
     //2nd: search for first half= zero till pivot
@@ -253,4 +258,63 @@ public class BSProblems {
     //as this is a sorted array, so whenever a number is greater than the next number that is PIVOT
     //otherway is, if mid<mid-1 that means, mid is pivot, cause we know this is sorted array.
 
+    static int findPivot(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            //4 cases of checking are following.
+            if (mid < end && arr[mid] > arr[mid + 1]) {
+                return mid;
+            }
+            if (mid > start && arr[mid] < arr[mid - 1]) {
+                return mid - 1;
+            }
+            if (arr[mid] <= arr[start]) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return -1;
+    }
+    //basically above problem is just finding largest number which we did previously, just slight change
+    //which is rotated array and thats why those 4 cases of checks.
+
+    //now lets search answer using this pivot in binary search
+    static int pivotBinarySearch(int[] arr, int target) {
+        int pivot = findPivot(arr);
+        if(pivot==-1) {
+            //if you did not find a pivot means -1, then array is not rotated, that means we have to do
+            //binary search. simple. as array is not rorated.
+            return searchingForPivotBinary(arr,target,0, arr.length-1);
+        }
+        //if pivot is found, that means we have found 2 ascending sorted arrays.
+        //now 3 cases we have to check
+        //case 1
+        if(arr[pivot]==target){
+            return pivot;
+        }
+        //case 2
+        if(target>=arr[0]){
+            return searchingForPivotBinary(arr,target,0,pivot-1);
+        }
+        //case 3
+        return searchingForPivotBinary(arr,target,pivot+1,arr.length-1);
+    }
+
+    //following method is just simple 101 binary search.
+    static int searchingForPivotBinary(int[] arr, int targetElement, int start, int end) {
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (targetElement < arr[mid]) {
+                end = mid - 1;
+            } else if (targetElement > arr[mid]) {
+                start = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
 }
