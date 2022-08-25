@@ -24,7 +24,11 @@ public class BSProblems {
         System.out.println("prob05: "+answer(arr2,targetElem3));
         //problem06
         int[] arr3={1,2,3,4,8,9,10,7,5,3,1,0};
-        System.out.println("problem06: "+mountainArray(arr3));
+        System.out.println("prob06: "+mountainArray(arr3));
+        //problem07
+        int[] arr4={1,2,4,5,3,1};
+        int targetElem4=3;
+        System.out.println("prob07: "+searchAnswer2(arr4,targetElem4));
     }
 
     //problem01: return index: smallest number>=target
@@ -175,4 +179,78 @@ public class BSProblems {
         //hence, they are pointing to just 1 element that is the maximum one.
         return start; //start and End both have the same value as we have sliced the array into 1 element.
     }
+
+    //problem07: peek of the mountain:
+
+    //above codes are already solving this probelm
+    //1st =find the peak of the array
+    //2nd =Binary search in Ascending order
+    //3rd= if target is not there then binary search in descending order, use orderagnostic search
+    static int searchAnswer2(int[] arr, int target){
+        int peak= peakIndexMountain(arr);
+        int firstTry=orderAgnostic(arr,target,0,peak);
+        if(firstTry!=-1){
+            return firstTry;
+        }
+        return orderAgnostic(arr,target,peak+1,arr.length-1);
+    }
+
+    //this following method is nothing but problem06 finding peak of the Array
+    static int peakIndexMountain(int[] arr){
+        int start =0;
+        int end =arr.length-1;
+        while(start<end){
+            int mid= start+(end-start)/2;
+            if(arr[mid]>arr[mid+1]){
+                //you are in decreasing part of the array
+                //this maybe the answer but to be sure we have to look left side.
+                end=mid; //we don't have to check right side anymore as we found that target is at left
+            }
+            else {
+                //you are in ascending part of the array
+                start = mid + 1; //because we know that mid+1 element is greater than mid index element.
+            }
+        }
+        //after slicing down the array start == end as we are cutting down above 2 checks.
+        //start and End are always trying to find max element in above 2 checks.
+        //hence, they are pointing to just 1 element that is the maximum one.
+        return start;
+    }
+
+    //this following method is nothing but the orderagnostic array problem.
+    static int orderAgnostic(int[] arr,int target, int start, int end){
+        boolean isAsc =arr[start]<arr[end];
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(arr[mid]==target){
+                return mid;
+            }
+            if(isAsc){
+                if(target<arr[mid]){
+                    end=mid-1;
+                }else{
+                    start=mid+1;
+                }
+            }else{
+                if(target>arr[mid]){
+                    end=mid+1;
+                }else{
+                    start=mid+1;
+                }
+            }
+        }
+        return -1;
+    }
+
+    //problem07: Sorted rotated array
+
+    //1st: find pivot:=> pivot is point where next number start ascending.
+    //2nd: search for first half= zero till pivot
+    //3rd: search from pivot till end.
+    // [3,4,5,6,7,0,1,2]  here 7 is the pivot.
+    //we can see that from 3-7 one half, 0-2 another half,
+    //when we find that mid>mid+, that is pivot.
+    //as this is a sorted array, so whenever a number is greater than the next number that is PIVOT
+    //otherway is, if mid<mid-1 that means, mid is pivot, cause we know this is sorted array.
+
 }
