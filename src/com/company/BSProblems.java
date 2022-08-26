@@ -33,8 +33,8 @@ public class BSProblems {
         //problem08(2 parts)
         int[] arr5 = {4, 5, 6, 7, 0, 1, 2};
         System.out.println("probl08_1: " + findPivot(arr5));
-        int[] arr6 = {4, 5, 6, 7, 0, 1, 2};
-        int targetElem5=3;
+        int[] arr6 = {6, 7, 8, 9, 1, 2, 3};
+        int targetElem5=6;
         System.out.println("probl08_2: " + pivotBinarySearch(arr6,targetElem5));
     }
 
