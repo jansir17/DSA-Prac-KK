@@ -1,19 +1,11 @@
 package Sorting;
 
 import java.util.Arrays;
-import java.util.Scanner;
 public class Bubble {
     public static void main(String[] args) {
         //Remember length-i-1. this will search until its necessary
         //if J never swaps that means array is already sorted. which is best CASE.
-        Scanner sc=new Scanner(System.in);
-        int[] array1=new int[5];
-        System.out.println("Enter your values.");
-        array1[0]=sc.nextInt();
-        array1[1]=sc.nextInt();
-        array1[2]=sc.nextInt();
-        array1[3]=sc.nextInt();
-        array1[4]=sc.nextInt();
+        int[] array1={3,5,2,1,4};
         bubbleSort(array1);
         System.out.println(Arrays.toString(array1));
     }
